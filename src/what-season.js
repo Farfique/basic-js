@@ -11,7 +11,35 @@ import { NotImplementedError } from '../extensions/index.js';
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-export default function getSeason(/* date */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getSeason(date) {
+  if (date == null){
+    return 'Unable to determine the time of year!';
+  }
+
+
+  if (!(date instanceof Date) || Object.prototype.toString.call(date) !== '[object Date]' || typeof date.getMonth() != 'number' || !Number.isFinite(date.getTime()) || !Number.isFinite(date.getMonth())){
+    throw new Error('Invalid date!');
+  }
+  
+  let month = date.getMonth();
+  switch (month) {
+    case 2:
+    case 3:
+    case 4:
+        return 'spring';
+    case 5:
+    case 6:
+    case 7:
+      return 'summer';
+    case 8:
+    case 9:
+    case 10:
+      return 'autumn';
+    case 11:
+    case 0:
+    case 1:
+      return 'winter';
+    default:
+      return 'Unable to determine the time of year!';
+  }
 }
