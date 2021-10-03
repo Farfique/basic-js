@@ -24,6 +24,7 @@ export default {
 
     
     if (typeof position != 'number' || position > this.getLength() || position <= 0) {
+      this.arr1 = [];
       throw new Error("You can\'t remove incorrect link!");
     }
     else {
